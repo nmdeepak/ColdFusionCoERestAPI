@@ -1,0 +1,20 @@
+{
+    "app":{
+        "cfengine":"adobe@2025"
+    },
+    "cfengine":{
+        "debug":{
+            "enable":"true"
+        },
+        "packages":"debugger"
+    },
+    "jvm":{
+        "javaHome":"C:\\Program Files\\Java\\jdk-26.0.1"
+    },
+    "v":true,
+    "web":{
+        "rewrites":{
+            "enable":"true"
+        }
+    }
+}

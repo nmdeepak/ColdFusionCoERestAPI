@@ -1,0 +1,37 @@
+{
+    "app":{
+        "cfengine":"adobe@2025",
+        "restMappings":"/rest/*,/api/*"
+    },
+    "jvm":{
+        "javaHome":"C:\\Program Files\\Java\\jdk-26.0.1",
+        "args":"-Dcoldfusion.rest.servlet.path=api"
+    },
+    "web":{
+        "rewrites":{
+            "enable":"false"
+        },
+        "bindings":{
+            "HTTP":{
+                "listen":"192.168.29.166:57231"
+            }
+        }
+    },
+    "cfengine":{
+        "debug":{
+            "enable":"true"
+        },
+        "packages":"debugger"
+    },
+    "box":{
+        "cfpm":{
+            "packages":[
+                "rest",
+                "json"
+            ]
+        }
+    },
+    "lucee":{
+        "adminPassword":"commandBox"
+    }
+}
