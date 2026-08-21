@@ -23,6 +23,7 @@
         
         <!--- 2. Register fresh REST application mapping --->
         <cfset restInitApplication(local.apiPath, "api")>
+        <cfset restInitApplication(expandPath("./api/v2"), "v2")>
         
         <cfcatch type="any">
             <cflog file="rest_errors" text="REST Init Warning: #cfcatch.message#">
@@ -34,13 +35,26 @@
     <cffunction name="onRequestStart" returntype="boolean">
         <cfargument name="targetPage" type="string" required="true">
 
+        <cfset variables.getPageContext = getPageContext()>
+        <cfif structKeyExists(getPageContext, "getResponse")>
+            <cfset variables.response = getPageContext.getResponse()>
+            <cfset variables.response.setHeader("Access-Control-Allow-Origin", "*")>
+            <cfset variables.response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")>
+            <cfset variables.response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")>
+        </cfif>
+          <!--- Handle HTTP OPTIONS Preflight Request --->
+        <cfif cgi.request_method == "OPTIONS">
+            <cfheader statuscode="200">
+            <cfabort>
+        </cfif>
+        
         <!--- Quick reload mechanism during development: http://localhost/index.cfm?reinit=1 --->
         <cfif structKeyExists(url, "reinit")>
             <cfset onApplicationStart()>
             <cfoutput>REST application reloaded successfully.</cfoutput>
             <cfabort>
         </cfif>
-
+        
         <cfreturn true>
     </cffunction>
 
