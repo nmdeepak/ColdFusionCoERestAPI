@@ -10,8 +10,6 @@ A lightweight, scalable RESTful API application built with **ColdFusion / Lucee*
 * **API Versioning:** Supports clear version separation (`/api/v1/...` and `/api/v2/...`).
 * **Clean URL Rewriting:** Uses CommandBox Tuckey URL rewrites to omit `/rest/` servlet paths.
 * **Lucee Cache Auto-Configuration:** Built-in programmatic memory caching in `Application.cfc` to avoid Lucee default cache errors.
-* **CORS Ready:** Configured for cross-origin requests from modern single-page applications (React, Angular, Vue).
-
 ---
 
 ## 🛠️ Tech Stack & Requirements
